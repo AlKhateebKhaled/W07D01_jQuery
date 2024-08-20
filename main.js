@@ -120,7 +120,6 @@ btn.on("click", () => {
 
 // **************************** Q7 ****************************
 
-
 const body = $("body");
 const header1 = $(`<h1>Todo List</h1>`);
 const ul = $(`<ul></ul>`);
@@ -133,13 +132,19 @@ const renderList = () => {
   toDos.forEach((element, index) => {
     const li = $(`<li>${element}</li>`);
     const deletBtn = $(`<button>delete</button>`);
+    const updateBtn = $(`<button>update</button>`);
     li.append(deletBtn);
+    li.append(updateBtn);
     ul.append(li);
-    deletBtn.on("click", () =>{
-        toDos.splice(index,1)
-        renderList();
-      })  
-});
+    deletBtn.on("click", () => {
+      toDos.splice(index, 1);
+      renderList();
+    });
+    updateBtn.on("click", () => {
+      toDos.splice(index, 1, input.val());
+      renderList();
+    });
+  });
 };
 
 renderList();
